@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,6 +10,7 @@
     <link href="/template/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
     <link href="/template/css/sb-admin-2.min.css" rel="stylesheet">
+    <link href="/css/style.css" rel="stylesheet">
 </head>
 
 <body id="page-top">
@@ -57,6 +59,7 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Cargos:</h6>
                         <a class="collapse-item" href="#">Cargos</a>
+                        <a class="collapse-item" href="#">Setores</a>
                     </div>
                 </div>
             </li>
@@ -76,6 +79,7 @@
                 <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Corporação:</h6>
+                        <a class="collapse-item" href="#">Empresa</a>
                         <a class="collapse-item" href="#">Benefícios</a>
                     </div>
                 </div>
@@ -90,7 +94,7 @@
 
         <div id="content-wrapper" class="d-flex flex-column">
             <div id="content">
-                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+                <nav class="navbar navbar-expand navbar-light bg-dark topbar mb-4 static-top shadow">
                     <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
                         <i class="fa fa-bars"></i>
                     </button>
@@ -99,7 +103,8 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{ Auth::user()->name }}</span>
+                                <span
+                                    class="mr-2 d-none d-lg-inline text-gray-600 small">{{ Auth::user()->name }}</span>
                                 <img class="img-profile rounded-circle" src="/template/img/undraw_profile.svg">
                             </a>
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -125,10 +130,10 @@
                     @yield('content-page')
                 </div>
             </div>
-            <footer class="sticky-footer bg-white">
+            <footer class="sticky-footer bg-dark">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>Direitos Reservados &copy; - PEOPLEPRO {{date('Y')}}</span>
+                        <span>Direitos Reservados &copy; - PEOPLEPRO {{ date('Y') }}</span>
                     </div>
                 </div>
             </footer>
@@ -146,4 +151,5 @@
     <script src="/template/js/demo/chart-area-demo.js"></script>
     <script src="/template/js/demo/chart-pie-demo.js"></script>
 </body>
+
 </html>

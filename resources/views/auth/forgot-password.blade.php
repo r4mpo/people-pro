@@ -28,7 +28,7 @@
 
                                 <div class="form-group">
                                     <div class="check_box_main">
-                                        Já tem conta? <a href="{{ route('login') }}" class="pas-text">Entre</a>.
+                                        Deseja fazer login?  Clique <a href="{{ route('login') }}" class="pas-text">aqui</a>.
                                     </div>
                                 </div>
 
