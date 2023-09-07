@@ -27,6 +27,13 @@
                                 </div>
 
                                 <div class="form-group">
+                                    <div class="check_box_main">
+                                        Já tem conta? <a href="{{ route('login') }}" class="pas-text">Entre</a>.
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group">
                                     <div class="btn_uy text-uppercase">
                                         <button type="submit"><span>Recuperar</span></button>
                                     </div>
