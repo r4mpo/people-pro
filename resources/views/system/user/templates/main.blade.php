@@ -10,7 +10,8 @@
     <link href="/template/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
     <link href="/template/css/sb-admin-2.min.css" rel="stylesheet">
-    <link href="/css/style.css" rel="stylesheet">
+    <link href="/template/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+    <link href="/css/system/user/style.css" rel="stylesheet">
 </head>
 
 <body id="page-top">
@@ -80,7 +81,7 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Corporação:</h6>
                         <a class="collapse-item" href="#">Empresa</a>
-                        <a class="collapse-item" href="#">Benefícios</a>
+                        <a class="collapse-item" href="{{ route('sistema.usuario.beneficios.entrar') }}">Benefícios</a>
                     </div>
                 </div>
             </li>
@@ -146,10 +147,7 @@
     <script src="/template/vendor/jquery/jquery.min.js"></script>
     <script src="/template/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="/template/vendor/jquery-easing/jquery.easing.min.js"></script>
-    <script src="/template/js/sb-admin-2.min.js"></script>
-    <script src="/template/vendor/chart.js/Chart.min.js"></script>
-    <script src="/template/js/demo/chart-area-demo.js"></script>
-    <script src="/template/js/demo/chart-pie-demo.js"></script>
+    <script src="/template/js/sb-admin-2.min.js"></script>    
+    @yield('scripts')
 </body>
-
 </html>

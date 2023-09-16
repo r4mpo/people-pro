@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\System\User\Beneficio;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -46,5 +47,13 @@ class User extends Authenticatable
     public function sendPasswordResetNotification($token)
     {
         $this->notify(new ResetPassword($token));
+    }
+
+    public function beneficio(){
+        return $this->belongsToMany(Beneficio::class);
+    }
+
+    public function beneficios(){
+        return $this->hasMany(Beneficio::class);
     }
 }
