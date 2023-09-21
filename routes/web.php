@@ -15,18 +15,15 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::prefix('/sistema')->group(function () {
+Route::prefix('/sistema')->middleware('auth')->group(function () {
 
     Route::prefix('/usuario')->group(function () {
 
         Route::prefix('/beneficios')->group(function () {
             Route::get('/', [Beneficios::class, 'index'])->name('sistema.usuario.beneficios.entrar');
-            Route::get('/cadastrar', [Beneficios::class, 'create'])->name('sistema.usuario.beneficios.cadastrar');
-            Route::post('/salvar', [Beneficios::class, 'store'])->name('sistema.usuario.beneficios.salvar');
-            Route::get('/visualizar/{id}', [Beneficios::class, 'show'])->name('sistema.usuario.beneficios.visualizar');
-            Route::get('/editar/{id}', [Beneficios::class, 'edit'])->name('sistema.usuario.beneficios.editar');
-            Route::get('/atualizar/{id}', [Beneficios::class, 'update'])->name('sistema.usuario.beneficios.atualizar');
-            Route::get('/excluir/{id}', [Beneficios::class, 'destroy'])->name('sistema.usuario.beneficios.excluir');
+            Route::get('/vincular-beneficio-usuario-view', [Beneficios::class, 'vincular_beneficio_usuario_view'])->name('sistema.usuario.beneficios.vincular_beneficio_usuario_view');
+            Route::post('/vincular-beneficio-usuario-exe', [Beneficios::class, 'vincular_beneficio_usuario_exe'])->name('sistema.usuario.beneficios.vincular_beneficio_usuario_exe');
+            Route::post('/desvincular-beneficio-usuario-exe', [Beneficios::class, 'desvincular_beneficio_usuario_exe'])->name('sistema.usuario.beneficios.desvincular_beneficio_usuario_exe');
         });
 
     });

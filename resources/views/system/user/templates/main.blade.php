@@ -8,10 +8,13 @@
     <title>PEOPLEPRO - @yield('title')</title>
 
     <link href="/template/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
     <link href="/template/css/sb-admin-2.min.css" rel="stylesheet">
     <link href="/template/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
     <link href="/css/system/user/style.css" rel="stylesheet">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
 
 <body id="page-top">
@@ -128,6 +131,21 @@
                     </ul>
                 </nav>
                 <div class="container-fluid">
+                    @if (session('success'))
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            <strong>Atenção:</strong> {{ session('success') }}
+                        </div>
+                    @elseif(session('error'))
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            <strong>Atenção:</strong> {{ session('error') }}
+                        </div>
+                    @elseif ($errors->any())
+                        @foreach ($errors->all() as $error)
+                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                {{ $error }}
+                            </div>
+                        @endforeach
+                    @endif
                     @yield('content-page')
                 </div>
             </div>
@@ -147,7 +165,8 @@
     <script src="/template/vendor/jquery/jquery.min.js"></script>
     <script src="/template/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="/template/vendor/jquery-easing/jquery.easing.min.js"></script>
-    <script src="/template/js/sb-admin-2.min.js"></script>    
+    <script src="/template/js/sb-admin-2.min.js"></script>
     @yield('scripts')
 </body>
+
 </html>

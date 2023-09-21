@@ -35,7 +35,7 @@ class Beneficio extends Model
 
     public function usuariosQuePossuemEsteBeneficio()
     {
-        return $this->hasMany(User::class);
+        return $this->belongsToMany(User::class);
     }
 
     public function definirValorTipo()

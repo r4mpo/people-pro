@@ -9,36 +9,22 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use App\Notifications\NewResetPasswordNotification as ResetPassword;
 
+
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array<int, string>
-     */
     protected $fillable = [
         'name',
         'email',
         'password',
     ];
 
-    /**
-     * The attributes that should be hidden for serialization.
-     *
-     * @var array<int, string>
-     */
     protected $hidden = [
         'password',
         'remember_token',
     ];
 
-    /**
-     * The attributes that should be cast.
-     *
-     * @var array<string, string>
-     */
     protected $casts = [
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
@@ -49,11 +35,20 @@ class User extends Authenticatable
         $this->notify(new ResetPassword($token));
     }
 
-    public function beneficio(){
+    public static function beneficiosNaoAtribuidosAoUsuario($user_id)
+    {
+        return Beneficio::whereDoesntHave('usuariosQuePossuemEsteBeneficio', function ($query) use ($user_id) {
+            $query->where('user_id', $user_id);
+        })->get();
+    }
+
+    public function beneficio()
+    {
         return $this->belongsToMany(Beneficio::class);
     }
 
-    public function beneficios(){
+    public function beneficios()
+    {
         return $this->hasMany(Beneficio::class);
     }
 }
