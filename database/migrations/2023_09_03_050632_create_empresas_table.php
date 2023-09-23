@@ -18,7 +18,7 @@ return new class extends Migration
             // Informações básicas da empresa
             $table->unsignedBigInteger('cnpj_raiz');
             $table->string('razao_social');
-            $table->string('capital_social')->nullable();
+            $table->unsignedBigInteger('capital_social')->nullable();
             $table->string('nome_fantasia')->nullable();
             $table->boolean('situacao_cadastral');
             $table->date('data_inicio_atividade');
@@ -42,9 +42,6 @@ return new class extends Migration
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
         Schema::dropIfExists('empresas');

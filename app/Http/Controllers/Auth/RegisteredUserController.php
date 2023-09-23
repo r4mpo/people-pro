@@ -53,7 +53,7 @@ class RegisteredUserController extends Controller
                 // Informações básicas da empresa
                 'cnpj_raiz' => preg_replace("/[^0-9]/", "", $dados->cnpj_raiz),
                 'razao_social' => $dados->razao_social,
-                'capital_social' => $dados->capital_social,
+                'capital_social' => preg_replace('/\D/', '', $dados->capital_social),
                 'nome_fantasia' => $dados->estabelecimento->nome_fantasia,
                 'situacao_cadastral' => $dados->estabelecimento->situacao_cadastral == 'Ativa' ? 1 : 0,
                 'data_inicio_atividade' => Carbon::parse($dados->estabelecimento->data_inicio_atividade)->format('Y-m-d'),

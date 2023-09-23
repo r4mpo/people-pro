@@ -15,7 +15,7 @@
                             method="post">
                             @csrf
                             <div class="mb-3">
-                                <h1 class="h3 mb-3 text-gray-800">Selecione os benefícios desejados</h1>
+                                <h1 class="mb-3 text-gray-800">Selecione os benefícios desejados</h1>
                                 <div class="row">
                                     @foreach ($beneficios as $beneficio)
                                         <div class="col-12">
