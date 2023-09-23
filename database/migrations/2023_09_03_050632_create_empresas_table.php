@@ -37,7 +37,8 @@ return new class extends Migration
             $table->unsignedBigInteger("telefone2")->nullable();
 
             // Usuário relacionado
-            $table->unsignedBigInteger('user_id')->unique()->references('id')->on('users');
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

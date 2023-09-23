@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\System\User\Beneficio;
+use App\Models\System\User\Empresa;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -50,5 +51,10 @@ class User extends Authenticatable
     public function beneficios()
     {
         return $this->hasMany(Beneficio::class);
+    }
+
+    public function empresa()
+    {
+        return $this->hasOne(Empresa::class, 'user_id', 'id');
     }
 }

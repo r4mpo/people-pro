@@ -83,7 +83,7 @@
                 <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Corporação:</h6>
-                        <a class="collapse-item" href="#">Empresa</a>
+                        <a class="collapse-item" href="{{ route('sistema.usuario.empresa.entrar') }}">Empresa</a>
                         <a class="collapse-item" href="{{ route('sistema.usuario.beneficios.entrar') }}">Benefícios</a>
                     </div>
                 </div>
@@ -134,10 +134,6 @@
                     @if (session('success'))
                         <div class="alert alert-success alert-dismissible fade show" role="alert">
                             <strong>Atenção:</strong> {{ session('success') }}
-                        </div>
-                    @elseif(session('error'))
-                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                            <strong>Atenção:</strong> {{ session('error') }}
                         </div>
                     @elseif ($errors->any())
                         @foreach ($errors->all() as $error)

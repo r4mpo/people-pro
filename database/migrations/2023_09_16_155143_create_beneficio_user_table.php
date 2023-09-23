@@ -15,8 +15,13 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
 
-            $table->foreignId('user_id')->constrained();
-            $table->foreignId('beneficio_id')->constrained();
+            // Usuário relacionado
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+
+            // Benefício relacionado
+            $table->unsignedBigInteger('beneficio_id');
+            $table->foreign('beneficio_id')->references('id')->on('beneficios')->onDelete('cascade');
         });
     }
 

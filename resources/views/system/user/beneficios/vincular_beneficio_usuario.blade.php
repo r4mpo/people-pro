@@ -2,36 +2,42 @@
 @section('title', 'Adicionar benefício')
 @section('content-page')
     <div class="container">
+        <p>
+            <a href="{{ route('sistema.usuario.beneficios.entrar') }}" class="text-gray-800"><i
+                class="fas fa-backward"></i> Retornar</a>
+        </p>
+
         <div class="row">
             <div class="col-4">
                 <div class="border mb-1 border-dark p-4">
-                    @if(count($beneficios) > 0)
-                    <form action="{{ route('sistema.usuario.beneficios.vincular_beneficio_usuario_exe') }}" method="post">
-                        @csrf
-                        <div class="mb-3">
-                            <h1 class="h3 mb-3 text-gray-800">Selecione os benefícios desejados</h1>
-                            <div class="row">
-                                @foreach ($beneficios as $beneficio)
-                                    <div class="col-12">
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" value="{{ $beneficio->id }}"
-                                                name="beneficios[]" id="flexCheckDefault">
-                                            <label class="form-check-label" for="flexCheckDefault">
-                                                {{ $beneficio->nome }}
-                                            </label>
+                    @if (count($beneficios) > 0)
+                        <form action="{{ route('sistema.usuario.beneficios.vincular_beneficio_usuario_exe') }}"
+                            method="post">
+                            @csrf
+                            <div class="mb-3">
+                                <h1 class="h3 mb-3 text-gray-800">Selecione os benefícios desejados</h1>
+                                <div class="row">
+                                    @foreach ($beneficios as $beneficio)
+                                        <div class="col-12">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value="{{ $beneficio->id }}"
+                                                    name="beneficios[]" id="flexCheckDefault">
+                                                <label class="form-check-label" for="flexCheckDefault">
+                                                    {{ $beneficio->nome }}
+                                                </label>
+                                            </div>
                                         </div>
-                                    </div>
-                                @endforeach
+                                    @endforeach
+                                </div>
                             </div>
-                        </div>
 
-                        <button type="submit" class="btn btn-success btn-icon-split">
-                            <span class="icon">
-                                <i class="fas fa-cog"></i>
-                            </span>
-                            <span class="text">Enviar</span>
-                        </button>
-                    </form>
+                            <button type="submit" class="btn btn-success btn-icon-split">
+                                <span class="icon">
+                                    <i class="fas fa-cog"></i>
+                                </span>
+                                <span class="text">Enviar</span>
+                            </button>
+                        </form>
                     @else
                         <h1 class="h3 mb-3 text-gray-800">Não há mais nenhum item disponível para um novo vínculo.</h1>
                     @endif

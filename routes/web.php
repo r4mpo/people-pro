@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\System\User\BeneficiosController as Beneficios;
+use App\Http\Controllers\System\User\EmpresasController as Empresas;
 
 Route::get('/', function () {
     return view('system.user.home');
@@ -24,6 +25,11 @@ Route::prefix('/sistema')->middleware('auth')->group(function () {
             Route::get('/vincular-beneficio-usuario-view', [Beneficios::class, 'vincular_beneficio_usuario_view'])->name('sistema.usuario.beneficios.vincular_beneficio_usuario_view');
             Route::post('/vincular-beneficio-usuario-exe', [Beneficios::class, 'vincular_beneficio_usuario_exe'])->name('sistema.usuario.beneficios.vincular_beneficio_usuario_exe');
             Route::post('/desvincular-beneficio-usuario-exe', [Beneficios::class, 'desvincular_beneficio_usuario_exe'])->name('sistema.usuario.beneficios.desvincular_beneficio_usuario_exe');
+        });
+
+        Route::prefix('/empresa')->group(function () {
+            Route::get('/', [Empresas::class, 'index'])->name('sistema.usuario.empresa.entrar');
+            Route::put('/atualizar/{id}', [Empresas::class, 'update'])->name('sistema.usuario.empresa.atualizar');
         });
 
     });
