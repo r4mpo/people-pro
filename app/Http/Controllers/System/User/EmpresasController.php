@@ -3,9 +3,10 @@
 namespace App\Http\Controllers\System\User;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
+use App\Http\Requests\System\User\Empresa\EditarRequest as Editar;
+use App\Models\System\User\Empresa;
 
 class EmpresasController extends Controller
 {
@@ -21,8 +22,16 @@ class EmpresasController extends Controller
     }
 
 
-    public function update(Request $request, string $id)
+    public function update(Editar $request, string $id)
     {
-        //
+        try {
+            $empresa = Empresa::findOrFail(base64_decode($id));
+            $empresa->update($request->all());
+            return Redirect::back()->with('success', 'Informações da empresa "' . $empresa->razao_social . '" foram atualizadas com sucesso.');
+        } catch (\Throwable $th) {
+            dd($th->getMessage());
+            return Redirect::back()->withErrors(["Ops, " . Auth::user()->name . ', aparentemente houve um erro ao editar os dados de sua empresa.']);
+        }
+        dd($request->all());
     }
 }

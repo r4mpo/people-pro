@@ -24,6 +24,7 @@ class Empresa extends Model
         "complemento",
         "bairro",
         "cep",
+        "cidade",
 
         // Contato
         "ddd1",

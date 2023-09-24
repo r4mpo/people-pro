@@ -63,6 +63,7 @@ class RegisteredUserController extends Controller
                 "numero" => $dados->estabelecimento->numero,
                 "complemento" => $dados->estabelecimento->complemento,
                 "bairro" => $dados->estabelecimento->bairro,
+                "cidade" => $dados->estabelecimento->cidade->nome,
                 "cep" => $dados->estabelecimento->cep,
 
                 // Contato

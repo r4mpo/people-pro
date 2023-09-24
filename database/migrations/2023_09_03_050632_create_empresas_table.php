@@ -29,6 +29,7 @@ return new class extends Migration
             $table->string("complemento")->nullable();
             $table->string("bairro");
             $table->unsignedBigInteger("cep");
+            $table->string("cidade");
 
             // Contato
             $table->unsignedBigInteger("ddd1");
