@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\System\User\Beneficio;
 use App\Models\System\User\Empresa;
+use App\Models\System\User\Setor;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -56,5 +57,10 @@ class User extends Authenticatable
     public function empresa()
     {
         return $this->hasOne(Empresa::class, 'user_id', 'id');
+    }
+
+    public function setores()
+    {
+        return $this->hasMany(Setor::class, 'user_id', 'id');
     }
 }

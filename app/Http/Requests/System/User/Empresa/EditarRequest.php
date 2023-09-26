@@ -25,7 +25,7 @@ class EditarRequest extends FormRequest
             "cidade" => ['required'],
             "ddd1" => ['required'],
             "telefone1" => ['required'],
-            'situacao_cadastral' => 'required',
+            'situacao_cadastral' => ['required'],
         ];
     }
 

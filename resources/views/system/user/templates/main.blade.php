@@ -63,7 +63,7 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Cargos:</h6>
                         <a class="collapse-item" href="#">Cargos</a>
-                        <a class="collapse-item" href="#">Setores</a>
+                        <a class="collapse-item" href="{{ route('sistema.usuario.setores.entrar') }}">Setores</a>
                     </div>
                 </div>
             </li>

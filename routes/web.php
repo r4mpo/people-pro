@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\System\User\BeneficiosController as Beneficios;
 use App\Http\Controllers\System\User\EmpresasController as Empresas;
+use App\Http\Controllers\System\User\SetoresController as Setores;
 
 Route::get('/', function () {
     return view('system.user.home');
@@ -32,8 +33,15 @@ Route::prefix('/sistema')->middleware('auth')->group(function () {
             Route::put('/atualizar/{id}', [Empresas::class, 'update'])->name('sistema.usuario.empresa.atualizar');
         });
 
+        Route::prefix('/setores')->group(function () {
+            Route::get('/', [Setores::class, 'index'])->name('sistema.usuario.setores.entrar');
+            Route::get('/criar', [Setores::class, 'create'])->name('sistema.usuario.setores.criar');
+            Route::post('/cadastrar', [Setores::class, 'store'])->name('sistema.usuario.setores.cadastrar');
+            Route::get('/editar/{id}', [Setores::class, 'edit'])->name('sistema.usuario.setores.editar');
+            Route::put('/atualizar/{id}', [Setores::class, 'update'])->name('sistema.usuario.setores.atualizar');
+            Route::delete('/excluir/{id}', [Setores::class, 'destroy'])->name('sistema.usuario.setores.excluir');
+        });
     });
-
 });
 
 require __DIR__ . '/auth.php';

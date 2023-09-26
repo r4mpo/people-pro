@@ -2,8 +2,10 @@
 
 namespace App\Models\System\User;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\User;
 
 class Empresa extends Model
 {
@@ -35,4 +37,10 @@ class Empresa extends Model
         // Usuário relacionado à empresa
         "user_id",
     ];
+
+
+    public function user()
+    {
+        return $this->hasOne(User::class, 'id', 'user_id');
+    }
 }
