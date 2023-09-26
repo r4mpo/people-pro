@@ -18,6 +18,15 @@
                 </div>
             </div>
 
+            <div class="row">
+                <div class="col-3">
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="basic-addon1"><i class="fas fa-cog"></i></span>
+                        <textarea class="form-control" id="descricao" name="descricao" placeholder="Descrição">{{ $setor->descricao }}</textarea>
+                    </div>
+                </div>
+            </div>
+
 
             <button type="submit" class="btn btn-success btn-icon-split">
                 <span class="icon">
