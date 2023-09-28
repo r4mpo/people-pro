@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Redirect;
 use App\Http\Requests\System\User\Cargo\Cadastrar;
 use App\Http\Requests\System\User\Cargo\Editar;
 use App\Models\System\User\Cargo;
+use Exception;
 
 class CargosController extends Controller
 {
@@ -54,7 +55,7 @@ class CargosController extends Controller
         try {
             $dados = $request->all();
             $cargo = Cargo::findOrFail(base64_decode($id));
-            $cargo->update($dados);
+            $cargo->user_id == Auth::user()->id ? $cargo->update($dados) : throw new Exception('Hahaha! Boa tentativa. Não se pode modificar dados de terceiros.');
             return redirect(route('sistema.usuario.cargos.entrar'))->with('success', 'Parabéns ' . $cargo->user->name . ', o cargo ' . $cargo->nome . ' foi atualizado com sucesso!');
         } catch (\Throwable $th) {
             return Redirect::back()->withErrors(['Ops! Houve um problema ao atualizar cargo.']);
@@ -64,7 +65,8 @@ class CargosController extends Controller
     public function destroy(string $id)
     {
         try {
-            Cargo::findOrFail(base64_decode($id))->delete();
+            $cargo = Cargo::findOrFail(base64_decode($id));
+            $cargo->user_id == Auth::user()->id ? $cargo->delete() : throw new Exception('Hahaha! Boa tentativa. Não se pode modificar dados de terceiros.');
             return redirect(route('sistema.usuario.cargos.entrar'))->with('success', 'Parabéns! Setor excluído com sucesso!');
         } catch (\Throwable $th) {
             return Redirect::back()->withErrors(['Ops! Houve um problema ao excluir cargo.']);

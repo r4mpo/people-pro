@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Redirect;
 use App\Http\Requests\System\User\Setor\Cadastrar;
 use App\Http\Requests\System\User\Setor\Editar;
 use App\Models\System\User\Setor;
+use Exception;
 
 class SetoresController extends Controller
 {
@@ -53,7 +54,7 @@ class SetoresController extends Controller
         try {
             $dados = $request->all();
             $setor = Setor::findOrFail(base64_decode($id));
-            $setor->update($dados);
+            $setor->user_id == Auth::user()->id ? $setor->update($dados) : throw new Exception('Hahaha! Boa tentativa. Não se pode modificar dados de terceiros.');
             return redirect(route('sistema.usuario.setores.entrar'))->with('success', 'Parabéns ' . $setor->user->name . ', o setor ' . $setor->nome . ' foi atualizado com sucesso!');
         } catch (\Throwable $th) {
             return Redirect::back()->withErrors(['Ops! Houve um problema ao atualizar setor.']);
@@ -63,7 +64,8 @@ class SetoresController extends Controller
     public function destroy(string $id)
     {
         try {
-            Setor::findOrFail(base64_decode($id))->delete();
+            $setor = Setor::findOrFail(base64_decode($id));
+            $setor->user_id == Auth::user()->id ? $setor->delete() : throw new Exception('Hahaha! Boa tentativa. Não se pode modificar dados de terceiros.');
             return redirect(route('sistema.usuario.setores.entrar'))->with('success', 'Parabéns! Setor excluído com sucesso!');
         } catch (\Throwable $th) {
             return Redirect::back()->withErrors(['Ops! Houve um problema ao excluir setor.']);
