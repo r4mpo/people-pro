@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\System\User\BeneficiosController as Beneficios;
 use App\Http\Controllers\System\User\EmpresasController as Empresas;
 use App\Http\Controllers\System\User\SetoresController as Setores;
+use App\Http\Controllers\System\User\CargosController as Cargos;
 
 Route::get('/', function () {
     return view('system.user.home');
@@ -40,6 +41,15 @@ Route::prefix('/sistema')->middleware('auth')->group(function () {
             Route::get('/editar/{id}', [Setores::class, 'edit'])->name('sistema.usuario.setores.editar');
             Route::put('/atualizar/{id}', [Setores::class, 'update'])->name('sistema.usuario.setores.atualizar');
             Route::delete('/excluir/{id}', [Setores::class, 'destroy'])->name('sistema.usuario.setores.excluir');
+        });
+
+        Route::prefix('/cargos')->group(function () {
+            Route::get('/', [Cargos::class, 'index'])->name('sistema.usuario.cargos.entrar');
+            Route::get('/criar', [Cargos::class, 'create'])->name('sistema.usuario.cargos.criar');
+            Route::post('/cadastrar', [Cargos::class, 'store'])->name('sistema.usuario.cargos.cadastrar');
+            Route::get('/editar/{id}', [Cargos::class, 'edit'])->name('sistema.usuario.cargos.editar');
+            Route::put('/atualizar/{id}', [Cargos::class, 'update'])->name('sistema.usuario.cargos.atualizar');
+            Route::delete('/excluir/{id}', [Cargos::class, 'destroy'])->name('sistema.usuario.cargos.excluir');
         });
     });
 });

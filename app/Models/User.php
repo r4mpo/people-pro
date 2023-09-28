@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\System\User\Beneficio;
+use App\Models\System\User\Cargo;
 use App\Models\System\User\Empresa;
 use App\Models\System\User\Setor;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -62,5 +63,10 @@ class User extends Authenticatable
     public function setores()
     {
         return $this->hasMany(Setor::class, 'user_id', 'id');
+    }
+
+    public function cargos()
+    {
+        return $this->hasMany(Cargo::class, 'user_id', 'id');
     }
 }

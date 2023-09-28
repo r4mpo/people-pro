@@ -1,5 +1,5 @@
 @extends('system.user.templates.main')
-@section('title', 'Setores')
+@section('title', 'Cargos')
 @section('content-page')
     <div id="wrapper">
         <div id="content-wrapper" class="d-flex flex-column">
@@ -9,12 +9,12 @@
                         <div class="card-body">
                             <div class="table-responsive">
 
-                                <a href="{{ route('sistema.usuario.setores.criar') }}"
+                                <a href="{{ route('sistema.usuario.cargos.criar') }}"
                                     class="btn btn-success btn-icon-split mb-3">
                                     <span class="icon text-white-50">
                                         <i class="fas fa-plus-circle"></i>
                                     </span>
-                                    <span class="text">Adicionar setor</span>
+                                    <span class="text">Adicionar cargo</span>
                                 </a>
 
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
@@ -22,22 +22,28 @@
                                         <tr>
                                             <th>Código</th>
                                             <th>Nome</th>
+                                            <th>Remuneração</th>
+                                            <th>Setor</th>
                                             <th>Ações</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($setores as $setor)
+                                        @foreach ($cargos as $cargo)
                                             <tr class="text-center">
-                                                <td>{{ base64_encode($setor->id) }}</td>
-                                                <td>{{ $setor->nome }}</td>
+                                                <td>{{ base64_encode($cargo->id) }}</td>
+                                                <td>{{ $cargo->nome }}</td>
+                                                <td>{{ $cargo->formatar_remuneracao() }}</td>
+                                                <td>{{ $cargo->setor->nome }}</td>
                                                 <td>
-                                                    <a title="Editar" href="{{ route('sistema.usuario.setores.editar', ['id' => base64_encode($setor->id)]) }}"><i class="fas fa-pencil-alt color-blue"></i></a>
+                                                    <a title="Editar"
+                                                        href="{{ route('sistema.usuario.cargos.editar', ['id' => base64_encode($cargo->id)]) }}"><i
+                                                            class="fas fa-pencil-alt color-blue"></i></a>
                                                     <i title="Excluir" class="fas fa-trash-alt cursor-pointer color-red"
                                                         data-bs-toggle="modal"
-                                                        data-bs-target="#excluirSetor{{ $setor->id }}"></i>
+                                                        data-bs-target="#excluirCargo{{ $cargo->id }}"></i>
                                                 </td>
                                             </tr>
-                                            @include('system.user.setores.includes.excluir_setor')
+                                            @include('system.user.cargos.includes.excluir_cargo')
                                         @endforeach
                                     </tbody>
                                 </table>
