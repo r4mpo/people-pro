@@ -17,7 +17,6 @@ class CargosController extends Controller
         try {
             $usuario = Auth::user();
             $cargos = $usuario->cargos;
-            $cargos = $usuario->cargos;
             return view('system.user.cargos.index', ['cargos' => $cargos, 'usuario' => $usuario]);
         } catch (\Throwable $th) {
             return Redirect::back()->withErrors(['Ops! Houve um problema ao acessar a página :(']);

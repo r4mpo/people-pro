@@ -45,7 +45,7 @@
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Colaboradores:</h6>
-                        <a class="collapse-item" href="#">Colaboradores</a>
+                        <a class="collapse-item" href="{{ route('sistema.usuario.colaboradores.entrar') }}">Colaboradores</a>
                         <a class="collapse-item" href="#">Financeiro</a>
                         <a class="collapse-item" href="#">Ponto</a>
                         <a class="collapse-item" href="#">Férias</a>

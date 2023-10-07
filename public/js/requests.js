@@ -44,3 +44,14 @@ function CnpjWs(input) {
         })
         .catch(error => console.error(error));
 }
+
+// Ao selecionar uma opção específica em um select,
+// um campo desejado vai ser desabilitado.
+function desabilitarInputComCampoDeSelecao(select, option, input)
+{
+    if(select.value == option){
+        input.disabled = true;
+    } else {
+        input.disabled = false;
+    }
+}

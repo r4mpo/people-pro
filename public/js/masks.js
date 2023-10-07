@@ -37,7 +37,7 @@ function formatarMoeda(input) {
     input.value = valor;
 }
 
-function formatarTelefone(input) {
+function formatarTelefoneSemDDD(input) {
     const numero = input.value.replace(/\D/g, '');
     let formato;
     if (numero.length <= 8) {
@@ -59,3 +59,41 @@ function formatarTelefone(input) {
     }
     input.value = telefoneFormatado;
 }
+
+function formatarTelefoneComDDD(input) {
+    const numero = input.value.replace(/\D/g, '');
+    let formato;
+    if (numero.length <= 8) {
+        formato = '(XX) XXXX-XXXX';
+    } else {
+        formato = '(XX) XXXXX-XXXX';
+    }
+    let telefoneFormatado = '';
+    let j = 0;
+    for (let i = 0; i < formato.length; i++) {
+        if (formato[i] === 'X') {
+            if (j < numero.length) {
+                telefoneFormatado += numero[j];
+                j++;
+            }
+        } else {
+            telefoneFormatado += formato[i];
+        }
+    }
+    input.value = telefoneFormatado;
+}
+
+
+function formatarCpfInput(input) {
+    let value = input.value.replace(/\D/g, ''); // Remove caracteres não numéricos
+    value = value.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, '$1.$2.$3-$4'); // Formata o CPF (###.###.###-##)
+    input.value = value;
+}
+
+
+function formatarRgInput(input) {
+    let value = input.value.replace(/\D/g, ''); // Remove caracteres não numéricos
+    value = value.replace(/(\d{2})(\d{3})(\d{3})(\d{1})/, '$1.$2.$3-$4'); // Formata o RG (##.###.###-#)
+    input.value = value;
+}
+

@@ -134,7 +134,7 @@
                     <label for="telefone1" class="form-label">Telefone 1</label>
 
                     <div class="input-group">
-                        <input type="text" value="{{$empresa->telefone1}}" placeholder="Digite aqui..." onkeyup="formatarTelefone(this)" class="form-control" id="telefone1"
+                        <input type="text" value="{{$empresa->telefone1}}" placeholder="Digite aqui..." onkeyup="formatarTelefoneSemDDD(this)" class="form-control" id="telefone1"
                             name="telefone1">
                     </div>
                 </div>
@@ -151,7 +151,7 @@
                     <label for="telefone2" class="form-label">Telefone 2</label>
 
                     <div class="input-group">
-                        <input type="text" value="{{$empresa->telefone2}}" onkeyup="formatarTelefone(this)" placeholder="Digite aqui..." class="form-control" id="telefone2"
+                        <input type="text" value="{{$empresa->telefone2}}" onkeyup="formatarTelefoneSemDDD(this)" placeholder="Digite aqui..." class="form-control" id="telefone2"
                             name="telefone2">
                     </div>
                 </div>

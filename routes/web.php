@@ -6,6 +6,7 @@ use App\Http\Controllers\System\User\BeneficiosController as Beneficios;
 use App\Http\Controllers\System\User\EmpresasController as Empresas;
 use App\Http\Controllers\System\User\SetoresController as Setores;
 use App\Http\Controllers\System\User\CargosController as Cargos;
+use App\Http\Controllers\System\User\ColaboradoresController as Colaboradores;
 
 Route::get('/', function () {
     return view('system.user.home');
@@ -50,6 +51,15 @@ Route::prefix('/sistema')->middleware('auth')->group(function () {
             Route::get('/editar/{id}', [Cargos::class, 'edit'])->name('sistema.usuario.cargos.editar');
             Route::put('/atualizar/{id}', [Cargos::class, 'update'])->name('sistema.usuario.cargos.atualizar');
             Route::delete('/excluir/{id}', [Cargos::class, 'destroy'])->name('sistema.usuario.cargos.excluir');
+        });
+
+        Route::prefix('/colaboradores')->group(function () {
+            Route::get('/', [Colaboradores::class, 'index'])->name('sistema.usuario.colaboradores.entrar');
+            Route::get('/criar', [Colaboradores::class, 'create'])->name('sistema.usuario.colaboradores.criar');
+            Route::post('/cadastrar', [Colaboradores::class, 'store'])->name('sistema.usuario.colaboradores.cadastrar');
+            Route::get('/editar/{id}', [Colaboradores::class, 'edit'])->name('sistema.usuario.colaboradores.editar');
+            Route::put('/atualizar/{id}', [Colaboradores::class, 'update'])->name('sistema.usuario.colaboradores.atualizar');
+            Route::delete('/excluir/{id}', [Colaboradores::class, 'destroy'])->name('sistema.usuario.colaboradores.excluir');
         });
     });
 });
