@@ -6,6 +6,7 @@ use App\Models\System\User\Beneficio;
 use App\Models\System\User\Cargo;
 use App\Models\System\User\Colaborador;
 use App\Models\System\User\Empresa;
+use App\Models\System\User\Financeiro;
 use App\Models\System\User\Setor;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -74,5 +75,10 @@ class User extends Authenticatable
     public function colaboradores()
     {
         return $this->hasMany(Colaborador::class, 'user_id', 'id');
+    }
+
+    public function financeiros()
+    {
+        return $this->hasMany(Financeiro::class, 'user_id', 'id');
     }
 }

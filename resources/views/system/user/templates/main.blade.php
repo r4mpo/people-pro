@@ -46,8 +46,7 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Colaboradores:</h6>
                         <a class="collapse-item" href="{{ route('sistema.usuario.colaboradores.entrar') }}">Colaboradores</a>
-                        <a class="collapse-item" href="#">Financeiro</a>
-                        <a class="collapse-item" href="#">Ponto</a>
+                        <a class="collapse-item" href="{{ route('sistema.usuario.financeiros.entrar') }}">Financeiro</a>
                         <a class="collapse-item" href="#">Férias</a>
                     </div>
                 </div>

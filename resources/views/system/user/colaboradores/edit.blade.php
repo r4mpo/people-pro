@@ -206,7 +206,7 @@
                                         <label for="complemento" class="form-label">Complemento</label>
 
                                         <div class="input-group">
-                                            <input required type="text" placeholder="Digite aqui..."
+                                            <input type="text" placeholder="Digite aqui..."
                                                 value="{{ $colaborador->complemento }}"
                                                 class="form-control text-uppercase" id="complemento" name="complemento">
                                         </div>

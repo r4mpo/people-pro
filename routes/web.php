@@ -7,6 +7,7 @@ use App\Http\Controllers\System\User\EmpresasController as Empresas;
 use App\Http\Controllers\System\User\SetoresController as Setores;
 use App\Http\Controllers\System\User\CargosController as Cargos;
 use App\Http\Controllers\System\User\ColaboradoresController as Colaboradores;
+use App\Http\Controllers\System\User\FinanceirosController as Financeiros;
 
 Route::get('/', function () {
     return view('system.user.home');
@@ -61,6 +62,16 @@ Route::prefix('/sistema')->middleware('auth')->group(function () {
             Route::put('/atualizar/{id}', [Colaboradores::class, 'update'])->name('sistema.usuario.colaboradores.atualizar');
             Route::delete('/excluir/{id}', [Colaboradores::class, 'destroy'])->name('sistema.usuario.colaboradores.excluir');
         });
+
+        Route::prefix('/financeiros')->group(function () {
+            Route::get('/', [Financeiros::class, 'index'])->name('sistema.usuario.financeiros.entrar');
+            Route::get('/criar', [Financeiros::class, 'create'])->name('sistema.usuario.financeiros.criar');
+            Route::post('/cadastrar', [Financeiros::class, 'store'])->name('sistema.usuario.financeiros.cadastrar');
+            Route::get('/editar/{id}', [Financeiros::class, 'edit'])->name('sistema.usuario.financeiros.editar');
+            Route::put('/atualizar/{id}', [Financeiros::class, 'update'])->name('sistema.usuario.financeiros.atualizar');
+            Route::delete('/excluir/{id}', [Financeiros::class, 'destroy'])->name('sistema.usuario.financeiros.excluir');
+        });
+
     });
 });
 

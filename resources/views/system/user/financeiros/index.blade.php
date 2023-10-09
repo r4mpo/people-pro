@@ -1,5 +1,5 @@
 @extends('system.user.templates.main')
-@section('title', 'Colaboradores')
+@section('title', 'Financeiros')
 @section('content-page')
     <div id="wrapper">
         <div id="content-wrapper" class="d-flex flex-column">
@@ -9,51 +9,39 @@
                         <div class="card-body">
                             <div class="table-responsive">
 
-                                <a href="{{ route('sistema.usuario.colaboradores.criar') }}"
+                                <a href="{{ route('sistema.usuario.financeiros.criar') }}"
                                     class="btn btn-success btn-icon-split mb-3">
                                     <span class="icon text-white-50">
                                         <i class="fas fa-plus-circle"></i>
                                     </span>
-                                    <span class="text">Adicionar colaborador</span>
+                                    <span class="text">Adicionar financeiro</span>
                                 </a>
 
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
                                             <td>Código</td>
-                                            <td>Nome</td>
-                                            <td>CPF</td>
-                                            <td>RG</td>
-                                            <td>E-mail</td>
-                                            <td>Telefone</td>
-                                            <td>Situação</td>
-                                            <td>Cargo</td>
-                                            <td>Escolaridade</td>
+                                            <td>Descrição</td>
+                                            <td>Documento</td>
                                             <td>Ações</td>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($colaboradores as $colaborador)
+                                        @foreach ($financeiros as $financeiro)
                                             <tr class="text-center">
-                                                <td>{{ base64_encode($colaborador->id) }}</td>
-                                                <td>{{ $colaborador->nome }}</td>
-                                                <td>{{ $colaborador->formatarCpf() }}</td>
-                                                <td>{{ $colaborador->formatarRg() }}</td>
-                                                <td>{{ $colaborador->email }}</td>
-                                                <td>{{ $colaborador->formatarTelefone() }}</td>
-                                                <td>{{ $colaborador->capturar_situacao() }}</td>
-                                                <td>{{ $colaborador->cargo->nome }}</td>
-                                                <td>{{ $colaborador->capturar_escolaridade() }}</td>
+                                                <td>{{ base64_encode($financeiro['id']) }}</td>
+                                                <td>{{ $financeiro['descricao'] }}</td>
+                                                <td><a href="{{ $financeiro['documento'] }}">Baixar</a></td>
                                                 <td>
                                                     <a title="Editar"
-                                                        href="{{ route('sistema.usuario.colaboradores.editar', ['id' => base64_encode($colaborador->id)]) }}"><i
+                                                        href="{{ route('sistema.usuario.financeiros.editar', ['id' => base64_encode($financeiro['id'])]) }}"><i
                                                             class="fas fa-pencil-alt color-blue"></i></a>
                                                     <i title="Excluir" class="fas fa-trash-alt cursor-pointer color-red"
                                                         data-bs-toggle="modal"
-                                                        data-bs-target="#excluirColaborador{{ $colaborador->id }}"></i>
+                                                        data-bs-target="#excluirFinanceiro{{ $financeiro['id'] }}"></i>
                                                 </td>
                                             </tr>
-                                            @include('system.user.colaboradores.includes.excluir_colaborador')
+                                            @include('system.user.financeiros.includes.excluir_financeiros')
                                         @endforeach
                                     </tbody>
                                 </table>
