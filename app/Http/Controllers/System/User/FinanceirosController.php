@@ -22,7 +22,7 @@ class FinanceirosController extends Controller
                 return [
                     'id' => $financeiro->id,
                     'descricao' => $financeiro->descricao,
-                    'documento' => storage_path("system/financeiro/$financeiro->documento"),
+                    'documento' => "http://" . $_SERVER['HTTP_HOST'] . "/documentos/system/financeiro/" . $financeiro->documento,
                 ];
             }), 'usuario' => $usuario]);
         } catch (\Throwable $th) {
@@ -46,7 +46,7 @@ class FinanceirosController extends Controller
                 $requestDocumento = $request->documento;
                 $extension = $requestDocumento->extension();
                 $documentoName = md5($requestDocumento->getClientOriginalName() . strtotime("now") . "." . $extension);
-                $request->documento->move(storage_path('system/financeiro'), $documentoName);
+                $request->documento->move(public_path('documentos/system/financeiro'), $documentoName);
                 $dados['documento'] = $documentoName;
             }
 
@@ -78,7 +78,7 @@ class FinanceirosController extends Controller
                         $requestDocumento = $request->documento;
                         $extension = $requestDocumento->extension();
                         $documentoName = md5($requestDocumento->getClientOriginalName() . strtotime("now") . "." . $extension);
-                        $request->documento->move(storage_path('system/financeiro'), $documentoName);
+                        $request->documento->move(public_path('documentos/system/financeiro'), $documentoName);
                         $dados['documento'] = $documentoName;
                     } else {
                         throw new Exception('Ops! Houve um problema inesperado na exclusão do arquivo. Tente novamente.');
@@ -119,8 +119,8 @@ class FinanceirosController extends Controller
     public function excluirArquivosFinanceiros($arquivo)
     {
         try {
-            if (file_exists(storage_path("system/financeiro/$arquivo"))) {
-                unlink(storage_path("system/financeiro/$arquivo"));
+            if (file_exists(public_path("documentos/system/financeiro/$arquivo"))) {
+                unlink(public_path("documentos/system/financeiro/$arquivo"));
                 return true;
             } else {
                 return true;

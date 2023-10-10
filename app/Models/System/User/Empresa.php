@@ -42,4 +42,35 @@ class Empresa extends Model
     {
         return $this->hasOne(User::class, 'id', 'user_id');
     }
+
+    public function formatar_capital_social()
+    {
+        return number_format($this->capital_social / 100, 2, ',', '.');
+    }
+
+    function formatarTelefoneSemDDD($telefone)
+    {
+        $input = $telefone == 1 ? $this->telefone1 : $this->telefone2;
+        if (!is_null($input)) {
+            $numero = preg_replace('/\D/', '', $input);
+            $formato = (strlen($numero) <= 8) ? 'XXXX-XXXX' : 'XXXXX-XXXX';
+            $telefoneFormatado = '';
+            $j = 0;
+
+            for ($i = 0; $i < strlen($formato); $i++) {
+                if ($formato[$i] === 'X') {
+                    if ($j < strlen($numero)) {
+                        $telefoneFormatado .= $numero[$j];
+                        $j++;
+                    }
+                } else {
+                    $telefoneFormatado .= $formato[$i];
+                }
+            }
+
+            return $telefoneFormatado;
+        } else {
+            return '';
+        }
+    }
 }

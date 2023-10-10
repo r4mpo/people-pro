@@ -22,7 +22,7 @@
                                     <div class="input-group">
                                         <span class="input-group-text" id="basic-addon3"><i
                                                 class="far fa-keyboard"></i></span>
-                                        <textarea required name="descricao"
+                                        <textarea name="descricao"
                                             placeholder="Ex: 'Pagamento de fatura do servidor'. Escreva uma descrição que remeta exatamente ao que foi destinado essa finança."
                                             id="descricao" cols="110" rows="4">{{$financeiro->descricao}}</textarea>
                                     </div>
@@ -33,7 +33,7 @@
                                     <div class="input-group">
                                         <span class="input-group-text" id="basic-addon3"><i
                                                 class="fas fa-file-pdf"></i></span>
-                                        <input required type="file" accept="jpeg,png,pdf" name="documento"
+                                        <input type="file" accept="jpeg,png,pdf" name="documento"
                                             id="documento">
                                     </div>
                                 </div>
@@ -49,7 +49,7 @@
                                     <span class="icon text-white-50">
                                         <i class="fas fa-check"></i>
                                     </span>
-                                    <span class="text">Cadastrar</span>
+                                    <span class="text">Editar</span>
                                     </a>
 
                             </div>

@@ -31,7 +31,7 @@
                 <label for="capital_social" class="form-label">Informe o capital social da sua empresa</label>
                 <div class="input-group">
                     <span class="input-group-text">Capital Social (Ex: R$1,00)</span>
-                    <input type="text" value="{{ $empresa->capital_social }}" onkeyup="formatarMoeda(this)" maxlength="20" placeholder="Digite aqui..." class="form-control" id="capital_social"
+                    <input type="text" value="{{ $empresa->formatar_capital_social() }}" onkeyup="formatarMoeda(this)" maxlength="20" placeholder="Digite aqui..." class="form-control" id="capital_social"
                         name="capital_social">
                 </div>
             </div>
@@ -134,7 +134,7 @@
                     <label for="telefone1" class="form-label">Telefone 1</label>
 
                     <div class="input-group">
-                        <input type="text" value="{{$empresa->telefone1}}" placeholder="Digite aqui..." onkeyup="formatarTelefoneSemDDD(this)" class="form-control" id="telefone1"
+                        <input type="text" value="{{$empresa->formatarTelefoneSemDDD(1)}}" placeholder="Digite aqui..." onkeyup="formatarTelefoneSemDDD(this)" class="form-control" id="telefone1"
                             name="telefone1">
                     </div>
                 </div>
@@ -151,7 +151,7 @@
                     <label for="telefone2" class="form-label">Telefone 2</label>
 
                     <div class="input-group">
-                        <input type="text" value="{{$empresa->telefone2}}" onkeyup="formatarTelefoneSemDDD(this)" placeholder="Digite aqui..." class="form-control" id="telefone2"
+                        <input type="text" value="{{$empresa->formatarTelefoneSemDDD(2)}}" onkeyup="formatarTelefoneSemDDD(this)" placeholder="Digite aqui..." class="form-control" id="telefone2"
                             name="telefone2">
                     </div>
                 </div>

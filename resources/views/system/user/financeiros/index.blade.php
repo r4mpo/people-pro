@@ -31,7 +31,7 @@
                                             <tr class="text-center">
                                                 <td>{{ base64_encode($financeiro['id']) }}</td>
                                                 <td>{{ $financeiro['descricao'] }}</td>
-                                                <td><a href="{{ $financeiro['documento'] }}">Baixar</a></td>
+                                                <td><a href="{{$financeiro['documento']}}" target="_blank">Download</a></td>
                                                 <td>
                                                     <a title="Editar"
                                                         href="{{ route('sistema.usuario.financeiros.editar', ['id' => base64_encode($financeiro['id'])]) }}"><i
