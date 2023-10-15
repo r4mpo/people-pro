@@ -22,7 +22,6 @@
                                         <tr>
                                             <td>Código</td>
                                             <td>Descrição</td>
-                                            <td>Documento</td>
                                             <td>Ações</td>
                                         </tr>
                                     </thead>
@@ -31,8 +30,9 @@
                                             <tr class="text-center">
                                                 <td>{{ base64_encode($financeiro['id']) }}</td>
                                                 <td>{{ $financeiro['descricao'] }}</td>
-                                                <td><a href="{{$financeiro['documento']}}" target="_blank">Download</a></td>
                                                 <td>
+                                                    <a title="Visualizar" href="{{ $financeiro['documento'] }}"
+                                                        target="_blank"><i class="fas fa-eye color-green"></i></a>
                                                     <a title="Editar"
                                                         href="{{ route('sistema.usuario.financeiros.editar', ['id' => base64_encode($financeiro['id'])]) }}"><i
                                                             class="fas fa-pencil-alt color-blue"></i></a>

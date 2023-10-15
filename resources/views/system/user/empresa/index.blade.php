@@ -8,7 +8,7 @@
         <div class="container">
             <div class="input-group mb-3">
                 <span class="input-group-text">Digite e pesquise pelo seu CNPJ</span>
-                <input type="text" value="{{ $empresa->cnpj_raiz }}" onkeypress="return apenasNumeros();" onkeydown="javascript: fMascCNPJ( this, mCNPJ );"
+                <input type="text" value="{{ $empresa->formatarCNPJ() }}" onkeypress="return apenasNumeros();" onkeydown="javascript: fMascCNPJ( this, mCNPJ );"
                     maxlength="18" class="form-control" placeholder="Digite aqui..." name="cnpj_raiz" id="cnpj_raiz">
                 <button type="button" onclick="CnpjWs(document.getElementById('cnpj_raiz'))" class="input-group-text"><i class="fas fa-search"></i></button>
             </div>

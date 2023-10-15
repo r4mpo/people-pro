@@ -37,6 +37,13 @@ class Empresa extends Model
         "user_id",
     ];
 
+    function formatarCNPJ() {
+        // Remove caracteres não numéricos
+        $cnpj = preg_replace("/[^0-9]/", '', $this->cnpj_raiz);
+    
+        // Adiciona pontos e barras de acordo com o formato do CNPJ (XX.XXX.XXX/XXXX-XX)
+        return substr($cnpj, 0, 2) . '.' . substr($cnpj, 2, 3) . '.' . substr($cnpj, 5, 3) . '/' . substr($cnpj, 8, 4) . '-' . substr($cnpj, 12);
+    }    
 
     public function user()
     {
