@@ -8,7 +8,7 @@
         <div class="form-group">
             <div class="mb-3">
                 <label for="name">Nome</label>
-                <input id="name" name="name" type="text" class="mt-1 form-control w-50" required>
+                <input id="name" name="name" type="text" class="mt-1 form-control w-50" value="{{Auth::user()->name}}" required>
                 @if ($errors->get('name'))
                     @foreach ($errors->get('name') as $error)
                         <p class="text-danger">{{ $error }}</p>
@@ -18,7 +18,7 @@
 
             <div class="mb-3">
                 <label for="email">E-mail</label>
-                <input id="email" name="email" type="email" class="mt-1 form-control w-50" required>
+                <input id="email" name="email" type="email" class="mt-1 form-control w-50" value="{{Auth::user()->email}}" required>
                 @if ($errors->get('email'))
                     @foreach ($errors->get('email') as $error)
                         <p class="text-danger">{{ $error }}</p>

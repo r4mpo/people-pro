@@ -221,7 +221,7 @@
                                             <span class="icon text-white-50">
                                                 <i class="fas fa-check"></i>
                                             </span>
-                                            <span class="text">Cadastrar</span>
+                                            <span class="text">Editar</span>
                                             </a>
 
                                     </div>

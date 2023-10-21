@@ -32,4 +32,8 @@ class Cargo extends Model
     {
         return 'R$ ' . number_format(($this->remuneracao / 100), 2, ',', '.');
     }
+
+    public function colaboradores(){
+        return $this->hasMany(Colaborador::class, 'cargo_id', 'id');
+    }
 }

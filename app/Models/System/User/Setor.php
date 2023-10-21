@@ -20,4 +20,8 @@ class Setor extends Model
     {
         return $this->hasOne(User::class, 'id', 'user_id');
     }
+
+    public function cargos(){
+        return $this->hasMany(Cargo::class, 'setor_id', 'id');
+    }
 }

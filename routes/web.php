@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\System\DashboardsController as Dashboards;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\System\User\BeneficiosController as Beneficios;
 use App\Http\Controllers\System\User\EmpresasController as Empresas;
@@ -9,9 +10,7 @@ use App\Http\Controllers\System\User\CargosController as Cargos;
 use App\Http\Controllers\System\User\ColaboradoresController as Colaboradores;
 use App\Http\Controllers\System\User\FinanceirosController as Financeiros;
 
-Route::get('/', function () {
-    return view('system.user.home');
-})->name('dashboard')->middleware('auth');
+Route::get('/', [Dashboards::class, 'dashboard_usuarios_comuns'])->name('dashboard')->middleware('auth');
 
 
 Route::middleware('auth')->group(function () {

@@ -14,7 +14,7 @@
     <link href="/template/css/sb-admin-2.min.css" rel="stylesheet">
     <link href="/template/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
     <link href="/css/system/user/style.css" rel="stylesheet">
-    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="csrf-token" id="csrf-token" content="{{ csrf_token() }}">
 </head>
 
 <body id="page-top">
