@@ -19,7 +19,7 @@
                                     <div class="input-group">
                                         <span class="input-group-text" id="basic-addon3"><i
                                                 class="fas fa-users-cog"></i></span>
-                                        <input type="text" class="form-control" id="nome" name="nome">
+                                        <input type="text" required placeholder="Digite aqui..." class="form-control" id="nome" name="nome">
                                     </div>
                                 </div>
 
@@ -28,7 +28,7 @@
                                     <div class="input-group">
                                         <span class="input-group-text" id="basic-addon3"><i
                                                 class="fas fa-pencil-alt"></i></span>
-                                        <textarea type="text" class="form-control" id="descricao" name="descricao"></textarea>
+                                        <textarea type="text" req UIrequired placeholder="Digite aqui..." class="form-control" id="descricao" name="descricao"></textarea>
                                     </div>
                                 </div>
 
@@ -36,7 +36,7 @@
                                     <label for="remuneracao" class="form-label">Remuneração</label>
                                     <div class="input-group">
                                         <span class="input-group-text"><i class="fas fa-money-bill-wave"></i></span>
-                                        <input type="text" onkeyup="formatarMoeda(this)" maxlength="20" class="form-control" id="remuneracao"
+                                        <input type="text" required placeholder="Digite aqui..." onkeyup="formatarMoeda(this)" maxlength="20" class="form-control" id="remuneracao"
                                             name="remuneracao">
                                     </div>
                                 </div>
@@ -44,7 +44,7 @@
 
                             <div class="col-6">
                                 <label for="setor_id" class="form-label">Setor</label><br>
-                                <select class="mb-3" name="setor_id" id="setor_id">
+                                <select class="mb-3" required name="setor_id" id="setor_id">
                                     <option selected>Selecione o setor do seu cargo</option>
                                     @foreach ($setores as $setor)
                                         <option value="{{ $setor->id }}">{{ $setor->nome }}</option>

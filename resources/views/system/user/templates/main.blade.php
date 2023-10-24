@@ -1,3 +1,7 @@
+@php
+    $url_atual = 'http' . (isset($_SERVER['HTTPS']) ? 's' : '') . '://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+@endphp
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -27,7 +31,7 @@
                 <div class="sidebar-brand-text mx-3">PEOPLEPRO</div>
             </a>
             <hr class="sidebar-divider my-0">
-            <li class="nav-item active">
+            <li class="nav-item @if ($url_atual == route('dashboard') . '/') active @endif">
                 <a class="nav-link" href="{{ route('dashboard') }}">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Geral</span></a>
@@ -45,8 +49,10 @@
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Colaboradores:</h6>
-                        <a class="collapse-item" href="{{ route('sistema.usuario.colaboradores.entrar') }}">Colaboradores</a>
-                        <a class="collapse-item" href="{{ route('sistema.usuario.financeiros.entrar') }}">Financeiro</a>
+                        <a class="collapse-item @if ($url_atual == route('sistema.usuario.colaboradores.entrar')) active @endif"
+                            href="{{ route('sistema.usuario.colaboradores.entrar') }}">Colaboradores</a>
+                        <a class="collapse-item @if ($url_atual == route('sistema.usuario.financeiros.entrar')) active @endif"
+                            href="{{ route('sistema.usuario.financeiros.entrar') }}">Financeiro</a>
                     </div>
                 </div>
             </li>
@@ -60,8 +66,10 @@
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Cargos:</h6>
-                        <a class="collapse-item" href="{{ route('sistema.usuario.cargos.entrar') }}">Cargos</a>
-                        <a class="collapse-item" href="{{ route('sistema.usuario.setores.entrar') }}">Setores</a>
+                        <a class="collapse-item @if ($url_atual == route('sistema.usuario.cargos.entrar')) active @endif"
+                            href="{{ route('sistema.usuario.cargos.entrar') }}">Cargos</a>
+                        <a class="collapse-item @if ($url_atual == route('sistema.usuario.setores.entrar')) active @endif"
+                            href="{{ route('sistema.usuario.setores.entrar') }}">Setores</a>
                     </div>
                 </div>
             </li>
@@ -81,8 +89,10 @@
                 <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Corporação:</h6>
-                        <a class="collapse-item" href="{{ route('sistema.usuario.empresa.entrar') }}">Empresa</a>
-                        <a class="collapse-item" href="{{ route('sistema.usuario.beneficios.entrar') }}">Benefícios</a>
+                        <a class="collapse-item @if ($url_atual == route('sistema.usuario.empresa.entrar')) active @endif"
+                            href="{{ route('sistema.usuario.empresa.entrar') }}">Empresa</a>
+                        <a class="collapse-item @if ($url_atual == route('sistema.usuario.beneficios.entrar')) active @endif"
+                            href="{{ route('sistema.usuario.beneficios.entrar') }}">Benefícios</a>
                     </div>
                 </div>
             </li>

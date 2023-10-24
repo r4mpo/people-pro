@@ -38,7 +38,7 @@
 
     <div class="container">
         <div class="row">
-            <p class="text-justify">{{ $dados['info'] }}</p>
+            <p class="text-justify"><em>{{ $dados['info'] }}</em></p>
         </div>
     </div>
 
@@ -63,6 +63,7 @@
                 </div>
             @endforeach
         </div>
+        <hr>
     @endif
 
     <input type="hidden" name="url_graficos" id="url_graficos" value="{{ $dados['url_graficos'] }}">
@@ -122,5 +123,5 @@
 
 @section('scripts')
     <script src="/template/vendor/chart.js/Chart.min.js"></script>
-    <script src="/template/js/demo/chart-area-demo.js"></script>
+    <script src="/template/js/demo/charts.js"></script>
 @endsection
