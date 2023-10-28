@@ -1,5 +1,6 @@
 @php
     $url_atual = 'http' . (isset($_SERVER['HTTPS']) ? 's' : '') . '://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+    use App\Models\User;
 @endphp
 
 <!DOCTYPE html>
@@ -36,66 +37,89 @@
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Geral</span></a>
             </li>
-            <hr class="sidebar-divider">
-            <div class="sidebar-heading">
-                Gestão de pessoas
-            </div>
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-                    aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fas fa-fw fa-users"></i>
-                    <span>Colaboradores</span>
-                </a>
-                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Colaboradores:</h6>
-                        <a class="collapse-item @if ($url_atual == route('sistema.usuario.colaboradores.entrar')) active @endif"
-                            href="{{ route('sistema.usuario.colaboradores.entrar') }}">Colaboradores</a>
-                        <a class="collapse-item @if ($url_atual == route('sistema.usuario.financeiros.entrar')) active @endif"
-                            href="{{ route('sistema.usuario.financeiros.entrar') }}">Financeiro</a>
-                    </div>
-                </div>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
-                    aria-expanded="true" aria-controls="collapseUtilities">
-                    <i class="fas fa-fw fa-user-tag"></i>
-                    <span>Cargos</span>
-                </a>
-                <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
-                    data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Cargos:</h6>
-                        <a class="collapse-item @if ($url_atual == route('sistema.usuario.cargos.entrar')) active @endif"
-                            href="{{ route('sistema.usuario.cargos.entrar') }}">Cargos</a>
-                        <a class="collapse-item @if ($url_atual == route('sistema.usuario.setores.entrar')) active @endif"
-                            href="{{ route('sistema.usuario.setores.entrar') }}">Setores</a>
-                    </div>
-                </div>
-            </li>
 
-            <hr class="sidebar-divider">
 
-            <div class="sidebar-heading">
-                Outras informações
-            </div>
-
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
-                    aria-expanded="true" aria-controls="collapsePages">
-                    <i class="fas fa-fw fa-cog"></i>
-                    <span>Corporação</span>
-                </a>
-                <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Corporação:</h6>
-                        <a class="collapse-item @if ($url_atual == route('sistema.usuario.empresa.entrar')) active @endif"
-                            href="{{ route('sistema.usuario.empresa.entrar') }}">Empresa</a>
-                        <a class="collapse-item @if ($url_atual == route('sistema.usuario.beneficios.entrar')) active @endif"
-                            href="{{ route('sistema.usuario.beneficios.entrar') }}">Benefícios</a>
-                    </div>
+            @canany([User::VISUALIZAR_COLABORADORES, User::VISUALIZAR_FINANCEIROS, User::VISUALIZAR_CARGOS,
+                User::VISUALIZAR_SETORES])
+                <hr class="sidebar-divider">
+                <div class="sidebar-heading">
+                    Gestão de pessoas
                 </div>
-            </li>
+                @canany([User::VISUALIZAR_COLABORADORES, User::VISUALIZAR_FINANCEIROS])
+                    <li class="nav-item">
+                        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
+                            aria-expanded="true" aria-controls="collapseTwo">
+                            <i class="fas fa-fw fa-users"></i>
+                            <span>Colaboradores</span>
+                        </a>
+                        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                            <div class="bg-white py-2 collapse-inner rounded">
+                                <h6 class="collapse-header">Colaboradores:</h6>
+                                @can(User::VISUALIZAR_COLABORADORES)
+                                    <a class="collapse-item @if ($url_atual == route('sistema.usuario.colaboradores.entrar')) active @endif"
+                                        href="{{ route('sistema.usuario.colaboradores.entrar') }}">Colaboradores</a>
+                                @endcan
+                                @can(User::VISUALIZAR_FINANCEIROS)
+                                    <a class="collapse-item @if ($url_atual == route('sistema.usuario.financeiros.entrar')) active @endif"
+                                        href="{{ route('sistema.usuario.financeiros.entrar') }}">Financeiro</a>
+                                @endcan
+                            </div>
+                        </div>
+                    </li>
+                @endcanany
+                @canany([User::VISUALIZAR_CARGOS, User::VISUALIZAR_SETORES])
+                    <li class="nav-item">
+                        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
+                            aria-expanded="true" aria-controls="collapseUtilities">
+                            <i class="fas fa-fw fa-user-tag"></i>
+                            <span>Cargos</span>
+                        </a>
+                        <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
+                            data-parent="#accordionSidebar">
+                            <div class="bg-white py-2 collapse-inner rounded">
+                                <h6 class="collapse-header">Cargos:</h6>
+                                @can(User::VISUALIZAR_CARGOS)
+                                    <a class="collapse-item @if ($url_atual == route('sistema.usuario.cargos.entrar')) active @endif"
+                                        href="{{ route('sistema.usuario.cargos.entrar') }}">Cargos</a>
+                                @endcan
+                                @can(User::VISUALIZAR_SETORES)
+                                    <a class="collapse-item @if ($url_atual == route('sistema.usuario.setores.entrar')) active @endif"
+                                        href="{{ route('sistema.usuario.setores.entrar') }}">Setores</a>
+                                @endcan
+                            </div>
+                        </div>
+                    </li>
+                @endcanany
+            @endcanany
+
+            @canany([User::VISUALIZAR_INFORMACOES_EMPRESA, User::VISUALIZAR_BENEFICIOS])
+                <hr class="sidebar-divider">
+
+                <div class="sidebar-heading">
+                    Outras informações
+                </div>
+
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
+                        aria-expanded="true" aria-controls="collapsePages">
+                        <i class="fas fa-fw fa-cog"></i>
+                        <span>Corporação</span>
+                    </a>
+                    <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                        <div class="bg-white py-2 collapse-inner rounded">
+                            <h6 class="collapse-header">Corporação:</h6>
+                            @can(User::VISUALIZAR_INFORMACOES_EMPRESA)
+                                <a class="collapse-item @if ($url_atual == route('sistema.usuario.empresa.entrar')) active @endif"
+                                    href="{{ route('sistema.usuario.empresa.entrar') }}">Empresa</a>
+                            @endcan
+                            @can(User::VISUALIZAR_BENEFICIOS)
+                                <a class="collapse-item @if ($url_atual == route('sistema.usuario.beneficios.entrar')) active @endif"
+                                    href="{{ route('sistema.usuario.beneficios.entrar') }}">Benefícios</a>
+                            @endcan
+                        </div>
+                    </div>
+                </li>
+            @endcanany
 
             <hr class="sidebar-divider d-none d-md-block">
 

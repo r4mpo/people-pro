@@ -47,7 +47,7 @@ class RegisteredUserController extends Controller
                 'name' => $request->name,
                 'email' => $request->email,
                 'password' => Hash::make($request->password),
-            ]);
+            ])->assignRole(User::ROLE_PERMISSIONS_USER);
 
             Empresa::create([
                 // Informações básicas da empresa

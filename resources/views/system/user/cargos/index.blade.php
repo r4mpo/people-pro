@@ -1,4 +1,5 @@
-@extends('system.user.templates.main')
+@extends('system.templates.main')
+@php use App\Models\User; @endphp
 @section('title', 'Cargos')
 @section('content-page')
     <div id="wrapper">
@@ -8,7 +9,7 @@
                     <div class="card shadow mb-4">
                         <div class="card-body">
                             <div class="table-responsive">
-
+                                @can(User::CADASTRAR_CARGOS)
                                 <a href="{{ route('sistema.usuario.cargos.criar') }}"
                                     class="btn btn-success btn-icon-split mb-3">
                                     <span class="icon text-white-50">
@@ -16,6 +17,7 @@
                                     </span>
                                     <span class="text">Adicionar cargo</span>
                                 </a>
+                                @endcan
 
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
@@ -24,7 +26,9 @@
                                             <th>Nome</th>
                                             <th>Remuneração</th>
                                             <th>Setor</th>
+                                            @canany([User::EDITAR_CARGOS, User::EXCLUIR_CARGOS])
                                             <th>Ações</th>
+                                            @endcanany
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -34,14 +38,20 @@
                                                 <td>{{ $cargo->nome }}</td>
                                                 <td>{{ $cargo->formatar_remuneracao() }}</td>
                                                 <td>{{ $cargo->setor->nome }}</td>
+                                                @canany([User::EDITAR_CARGOS, User::EXCLUIR_CARGOS])
                                                 <td>
+                                                    @can(User::EDITAR_CARGOS)
                                                     <a title="Editar"
                                                         href="{{ route('sistema.usuario.cargos.editar', ['id' => base64_encode($cargo->id)]) }}"><i
                                                             class="fas fa-pencil-alt color-blue"></i></a>
+                                                            @endcan
+                                                            @can(User::EXCLUIR_CARGOS)
                                                     <i title="Excluir" class="fas fa-trash-alt cursor-pointer color-red"
                                                         data-bs-toggle="modal"
                                                         data-bs-target="#excluirCargo{{ $cargo->id }}"></i>
+                                                        @endcan
                                                 </td>
+                                                @endcan
                                             </tr>
                                             @include('system.user.cargos.includes.excluir_cargo')
                                         @endforeach

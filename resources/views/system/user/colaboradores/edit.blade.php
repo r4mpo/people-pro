@@ -1,4 +1,4 @@
-@extends('system.user.templates.main')
+@extends('system.templates.main')
 @section('title', 'Editar Colaborador: ' . $colaborador->nome)
 @section('content-page')
     <div class="container">

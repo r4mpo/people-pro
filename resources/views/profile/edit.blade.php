@@ -1,4 +1,4 @@
-@extends('system.user.templates.main')
+@extends('system.templates.main')
 @section('title', 'Perfil')
 @section('content-page')
     @include('profile.partials.update-profile-information-form')

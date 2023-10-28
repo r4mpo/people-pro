@@ -1,4 +1,4 @@
-@extends('system.user.templates.main')
+@extends('system.templates.main')
 @section('title', 'Adicionar Colaborador')
 @section('content-page')
     <div class="container">

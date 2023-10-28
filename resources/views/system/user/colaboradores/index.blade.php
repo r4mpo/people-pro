@@ -1,4 +1,5 @@
-@extends('system.user.templates.main')
+@extends('system.templates.main')
+@php use App\Models\User; @endphp
 @section('title', 'Colaboradores')
 @section('content-page')
     <div id="wrapper">
@@ -8,14 +9,15 @@
                     <div class="card shadow mb-4">
                         <div class="card-body">
                             <div class="table-responsive">
-
-                                <a href="{{ route('sistema.usuario.colaboradores.criar') }}"
-                                    class="btn btn-success btn-icon-split mb-3">
-                                    <span class="icon text-white-50">
-                                        <i class="fas fa-plus-circle"></i>
-                                    </span>
-                                    <span class="text">Adicionar colaborador</span>
-                                </a>
+                                @can(User::CADASTRAR_COLABORADORES)
+                                    <a href="{{ route('sistema.usuario.colaboradores.criar') }}"
+                                        class="btn btn-success btn-icon-split mb-3">
+                                        <span class="icon text-white-50">
+                                            <i class="fas fa-plus-circle"></i>
+                                        </span>
+                                        <span class="text">Adicionar colaborador</span>
+                                    </a>
+                                @endcan
 
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
@@ -29,7 +31,9 @@
                                             <td>Situação</td>
                                             <td>Cargo</td>
                                             <td>Escolaridade</td>
-                                            <td>Ações</td>
+                                            @canany([User::EDITAR_COLABORADORES, User::EXCLUIR_COLABORADORES])
+                                                <td>Ações</td>
+                                            @endcanany
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -44,14 +48,20 @@
                                                 <td>{{ $colaborador->capturar_situacao() }}</td>
                                                 <td>{{ $colaborador->cargo->nome }}</td>
                                                 <td>{{ $colaborador->capturar_escolaridade() }}</td>
-                                                <td>
-                                                    <a title="Editar"
-                                                        href="{{ route('sistema.usuario.colaboradores.editar', ['id' => base64_encode($colaborador->id)]) }}"><i
-                                                            class="fas fa-pencil-alt color-blue"></i></a>
-                                                    <i title="Excluir" class="fas fa-trash-alt cursor-pointer color-red"
-                                                        data-bs-toggle="modal"
-                                                        data-bs-target="#excluirColaborador{{ $colaborador->id }}"></i>
-                                                </td>
+                                                @canany([User::EDITAR_COLABORADORES, User::EXCLUIR_COLABORADORES])
+                                                    <td>
+                                                        @can(User::EDITAR_COLABORADORES)
+                                                            <a title="Editar"
+                                                                href="{{ route('sistema.usuario.colaboradores.editar', ['id' => base64_encode($colaborador->id)]) }}"><i
+                                                                    class="fas fa-pencil-alt color-blue"></i></a>
+                                                        @endcan
+                                                        @can(User::EXCLUIR_COLABORADORES)
+                                                            <i title="Excluir" class="fas fa-trash-alt cursor-pointer color-red"
+                                                                data-bs-toggle="modal"
+                                                                data-bs-target="#excluirColaborador{{ $colaborador->id }}"></i>
+                                                        @endcan
+                                                    </td>
+                                                @endcanany
                                             </tr>
                                             @include('system.user.colaboradores.includes.excluir_colaborador')
                                         @endforeach
