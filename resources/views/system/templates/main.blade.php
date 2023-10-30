@@ -121,6 +121,32 @@
                 </li>
             @endcanany
 
+            @canany([User::VISUALIZAR_PERFIS_ACESSO, User::VISUALIZAR_PERFIS_USUARIOS])
+                <hr class="sidebar-divider">
+
+                <div class="sidebar-heading">
+                    Administração
+                </div>
+
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
+                        aria-expanded="true" aria-controls="collapsePages">
+                        <i class="fas fa-fw fa-cog"></i>
+                        <span>Controle</span>
+                    </a>
+                    <div id="collapsePages" class="collapse" aria-labelledby="headingPages"
+                        data-parent="#accordionSidebar">
+                        <div class="bg-white py-2 collapse-inner rounded">
+                            <h6 class="collapse-header">Acessos:</h6>
+                            @can(User::VISUALIZAR_PERFIS_ACESSO)
+                                <a class="collapse-item @if ($url_atual == route('system.admin.perfis.index')) active @endif"
+                                    href="{{ route('system.admin.perfis.index') }}">Perfis</a>
+                            @endcan
+                        </div>
+                    </div>
+                </li>
+            @endcanany
+
             <hr class="sidebar-divider d-none d-md-block">
 
             <div class="text-center d-none d-md-inline">

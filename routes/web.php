@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\System\Admin\PerfisAcessoController as Perfis;
 use App\Http\Controllers\System\DashboardsController as Dashboards;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\System\User\BeneficiosController as Beneficios;
@@ -70,6 +71,17 @@ Route::prefix('/sistema')->middleware('auth')->group(function () {
             Route::get('/editar/{id}', [Financeiros::class, 'edit'])->name('sistema.usuario.financeiros.editar')->middleware(['permission:' . User::EDITAR_FINANCEIROS]);
             Route::put('/atualizar/{id}', [Financeiros::class, 'update'])->name('sistema.usuario.financeiros.atualizar')->middleware(['permission:' . User::EDITAR_FINANCEIROS]);
             Route::delete('/excluir/{id}', [Financeiros::class, 'destroy'])->name('sistema.usuario.financeiros.excluir')->middleware(['permission:' . User::EXCLUIR_FINANCEIROS]);
+        });
+    });
+
+    Route::prefix('/administrador')->group(function () {
+        Route::prefix('/perfis_acesso')->group(function () {
+            Route::get('/', [Perfis::class, 'index'])->name('system.admin.perfis.index')->middleware(['permission:' . User::VISUALIZAR_PERFIS_ACESSO]);
+            Route::get('/criar', [Perfis::class, 'create'])->name('system.admin.perfis.create')->middleware(['permission:' . User::CADASTRAR_PERFIS_ACESSO]);
+            Route::post('/inserir', [Perfis::class, 'store'])->name('system.admin.perfis.index.cadastrar')->middleware(['permission:' . User::CADASTRAR_PERFIS_ACESSO]);
+            Route::get('/editar/{id}', [Perfis::class, 'edit'])->name('system.admin.perfis.editar')->middleware(['permission:' . User::EDITAR_PERFIS_ACESSO]);
+            Route::put('/atualizar/{id}', [Perfis::class, 'update'])->name('system.admin.perfis.atualizar')->middleware(['permission:' . User::EDITAR_PERFIS_ACESSO]);
+            Route::delete('/excluir/{id}', [Perfis::class, 'destroy'])->name('system.admin.perfis.excluir')->middleware(['permission:' . User::EXCLUIR_PERFIS_ACESSO]);
         });
     });
 });

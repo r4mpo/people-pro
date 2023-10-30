@@ -14,6 +14,25 @@
     color: blue;
 }
 
+.color-yellow {
+    color: rgb(121, 121, 19);
+}
+
 .text-uppercase {
     text-transform: uppercase;
 }
+
+.margin-text-roles-left {
+    position: absolute;
+    right: 11%;
+  }
+  
+  .margin-text-btn-left {
+    position: absolute;
+    right: 3%;
+  }
+  
+  .margin-text-roles-right {
+    position: absolute;
+    left: 5%;
+  }
