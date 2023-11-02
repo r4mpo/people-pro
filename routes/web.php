@@ -10,6 +10,7 @@ use App\Http\Controllers\System\User\SetoresController as Setores;
 use App\Http\Controllers\System\User\CargosController as Cargos;
 use App\Http\Controllers\System\User\ColaboradoresController as Colaboradores;
 use App\Http\Controllers\System\User\FinanceirosController as Financeiros;
+use App\Http\Controllers\System\Admin\PerfisUsuariosController as PerfisUsuarios;
 use App\Models\User;
 
 Route::get('/', [Dashboards::class, 'home'])->name('dashboard')->middleware('auth');
@@ -82,6 +83,11 @@ Route::prefix('/sistema')->middleware('auth')->group(function () {
             Route::get('/editar/{id}', [Perfis::class, 'edit'])->name('system.admin.perfis.editar')->middleware(['permission:' . User::EDITAR_PERFIS_ACESSO]);
             Route::put('/atualizar/{id}', [Perfis::class, 'update'])->name('system.admin.perfis.atualizar')->middleware(['permission:' . User::EDITAR_PERFIS_ACESSO]);
             Route::delete('/excluir/{id}', [Perfis::class, 'destroy'])->name('system.admin.perfis.excluir')->middleware(['permission:' . User::EXCLUIR_PERFIS_ACESSO]);
+        });
+
+        Route::prefix('/perfis_usuarios')->group(function (){
+            Route::get('/', [PerfisUsuarios::class, 'index'])->name('system.admin.perfis.usuarios.index')->middleware(['permission:' . User::VISUALIZAR_PERFIS_USUARIOS]);
+            Route::put('/atualizar/{id}', [PerfisUsuarios::class, 'edit'])->name('system.admin.perfis.usuarios.edit')->middleware(['permission:' . User::EDITAR_PERFIS_USUARIOS]);
         });
     });
 });

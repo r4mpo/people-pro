@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\System;
 
 use App\Http\Controllers\Controller;
+use App\Models\System\User\Beneficio;
 use App\Models\System\User\Colaborador;
 use App\Models\System\User\Setor;
 use App\Models\User;
@@ -15,12 +16,19 @@ class DashboardsController extends Controller
     public function home()
     {
         $user = Auth::user();
+        $dados = array();
 
         if ($user->hasRole(User::ROLE_PERMISSIONS_ADMIN)) {
-            return view('system.admin.home');
+
+            $dados['qtd_usuarios_sistema'] = count(User::all());
+            $dados['qtd_colaboradores_ativos'] = count(Colaborador::where('situacao', Colaborador::SITUACAO_ATIVO)->get());
+            $dados['qtd_colaboradores_inativos'] = count(Colaborador::where('situacao', Colaborador::SITUACAO_INATIVO)->get());
+            $dados['beneficios'] = Beneficio::all();
+
+
+            return view('system.admin.home', ['dados' => $dados]);
         } else {
             $empresa = $user->empresa;
-            $dados = array();
 
             $dados['qtd_colaboradores_ativos'] = count(
                 Colaborador::where('user_id', $user->id)

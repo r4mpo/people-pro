@@ -142,6 +142,10 @@
                                 <a class="collapse-item @if ($url_atual == route('system.admin.perfis.index')) active @endif"
                                     href="{{ route('system.admin.perfis.index') }}">Perfis</a>
                             @endcan
+                            @can(User::VISUALIZAR_PERFIS_USUARIOS)
+                                <a class="collapse-item @if ($url_atual == route('system.admin.perfis.usuarios.index')) active @endif"
+                                    href="{{ route('system.admin.perfis.usuarios.index') }}">Perfis e Users</a>
+                            @endcan
                         </div>
                     </div>
                 </li>
