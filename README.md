@@ -50,6 +50,14 @@ No gif abaixo podemos ver o processo de cadastro - onde o usuário preenche o cn
     <img width="400" height="300" src="/public/readme-docs/login-e-exibicao-do-perfil.gif">
 </p>
 
+A seguir, confira a funcionalidade relacionada aos benefícios, onde podemos vincular e desvincular os benefícios e o usuário. Como mencionado, o sistema está projetado para pequenas cargas de informações (ou até cargas medianas), portanto utilizei o datatable do próprio template, ao invés de configurá-lo para população com base em API. Desta forma, retornei as informações da forma convencional com Laravel, utilizando foreach nos `"<tr>"` de nossa tabela. Além disso, acho interessante ressaltar que os benefícios e o id do usuário responsável são enviados para uma tabela que relaciona os dois.
+
+
+<p align="center">
+    <img width="400" height="300" src="/public/readme-docs/beneficios.gif">
+</p>
+
+
 
 
 ## License
