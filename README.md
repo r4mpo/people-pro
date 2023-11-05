@@ -7,59 +7,50 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
-## About Laravel
+## Sobre o PeoplePro
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+O PeoplePro está sendo projetado para ser um software de gestão voltado para empresas, por isso contém gerenciamento de colaboradores, benefícios, cargos e um dashboard ilustrativo. Além disso, o sistema funciona em modelo SaaS, o que possibilita múltiplos usuários, cada um com seus respectivos dados.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+Confira as tecnologias utilizadas no projeto
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+- PHP 8.2.4 e Framework Laravel 10.21.0.
+- HTML5, CSS3, Bootstrap 5, JavaScript Vanilla, ChartJS, DataTables.
+- Banco de dados relacional MySQL (PHP MyAdmin).
 
-## Learning Laravel
+Sobre o desevolvimento
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+- Laravel Blade foi utilizado no desenvolvimento da camada de visualização.
+- As rotas foram, em sua maioria, definidas no arquivo routes/web.php, por exceção da rota de alimentação dos gráficos no dashboard. Neste caso, foi criado um endpoint em routes/api.php, tendo em vista que os gráficos foram populados via Api Fetch, com JS.
+- Foi utilizado o padrão MVC e estrutura tradicional de um projeto monolítico, por questão da praticidade.
+- O sistema está em fase de desenvolvimento, necessitando de correções em poucos detalhes e de melhorias a serem observadas, mas já está apto para demonstrações.
+- Para autenticação e limitação de níveis de acesso foi utilizado Breeze em conjunto com Spatie Permissions.
+- Utilizei, no front-end, o template free [SB-ADMIN-2](https://startbootstrap.com/theme/sb-admin-2) e fui implementando as modificações necessárias.
+- Validações de formulário foram feitas com o FormRequest do Laravel e comandos artisan personalizados foram criados.
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+## Objetivo
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+O objetivo do projeto é a fixação de conhecimentos como padrão MVC, lógica de programação, PHP, MySQL e etc. Portanto, projetei o sistema para uma pequena carga de informações, priorizando a segurança e relacionamentos adequados entre os dados do banco e o usuário responsável, para que nenhum user acesse itens de outro, e para isso foi utilizado métodos como hasOne e hasMany, através do Eloquent do Laravel.
 
-## Laravel Sponsors
+## Conferindo o funcionamento
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+Inicialmente, devemos configurar o .env com a nossa conexão de banco de dados e smtp, após isso devemos rodar os comandos:
 
-### Premium Partners
+- composer install / composer update -> para instalar/atualizar todas as dependências e pacotes laravel.
+- php artisan migrate -> migrará todas tabelas necessárias para seu banco de dados.
+- php artisan app:reproduzir-spatie-no-banco-de-dados (personalizado) -> populando tabelas relacionadas ao Access Control List.
+- php artisan app:gerar-beneficios-no-banco-de-dados (personalizado) -> populando tabela de benefícios disponíveis.
+- php artisan db:seed -> roda as sementes para popularem especificamente (neste caso) a tabela de usuários.
+- php artisan serve -> servindo a aplicação, tornando-a disponível em seu navegador.
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
 
-## Contributing
+No gif abaixo podemos ver o processo de cadastro - onde o usuário preenche o cnpj que será, posteriormente, conferido na api cnpj.ws para preencher os dados na tabela "empresa" - e, após isso, acessando as informações de perfil:
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
 
-## Code of Conduct
+<p align="center">
+    <img width="400" height="300" src="/public/readme-docs/login-e-exibicao-do-perfil.gif">
+</p>
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
 
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
 
 ## License
 
