@@ -45,25 +45,29 @@ Inicialmente, devemos configurar o .env com a nossa conexão de banco de dados e
 
 No gif abaixo podemos ver o processo de cadastro - onde o usuário preenche o cnpj que será, posteriormente, conferido na api cnpj.ws para preencher os dados na tabela "empresa" - e, após isso, acessando as informações de perfil:
 
-
 <p align="center">
     <img width="400" height="300" src="/public/readme-docs/login-e-exibicao-do-perfil.gif">
 </p>
 
 A seguir, confira a funcionalidade relacionada aos benefícios, onde podemos vincular e desvincular os benefícios e o usuário. Como mencionado, o sistema está projetado para pequenas cargas de informações (ou até cargas medianas), portanto utilizei o datatable do próprio template, ao invés de configurá-lo para população com base em API. Desta forma, retornei as informações da forma convencional com Laravel, utilizando foreach nos `"<tr>"` de nossa tabela. Além disso, acho interessante ressaltar que os benefícios e o id do usuário responsável são enviados para uma tabela que relaciona os dois.
 
-
 <p align="center">
     <img width="400" height="300" src="/public/readme-docs/beneficios.gif">
 </p>
 
-
 Na parte de "Empresa" dentro do sistema, podemos atualizar as informações da empresa em que estamos relacionados. Faz-se uso de duas APIs, sendo o cnpj.ws e o viacep, de forma que o usuário tenha mais facilidade e perca menos tempo preenchendo os campos do formulário. Quando estas informações são atualizadas com sucesso, elas são salvas no banco de dados, alterando dinamicamente o restante do sistema.
-
 
 <p align="center">
     <img width="400" height="300" src="/public/readme-docs/empresa.gif">
 </p>
+
+Na parte de setores e cargos, há uma relação entre esses dois itens, tendo em vista que ambos se completam. Confira a seguir um CRUD dessas informações:
+
+```
+<p align="center">
+    <img width="400" height="300" src="/public/readme-docs/setores-e-cargos.gif">
+</p>
+```
 
 
 
