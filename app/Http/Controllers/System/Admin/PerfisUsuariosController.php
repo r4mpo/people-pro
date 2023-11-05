@@ -22,7 +22,7 @@ class PerfisUsuariosController extends Controller
                     'id' => $user->id,
                     'nome' => $user->name,
                     'email' => $user->email,
-                    'empresa' => $user->empresa->razao_social,
+                    'empresa' => isset($user->empresa) ? $user->empresa->razao_social : '-',
                     'perfil' => $user->getRoleNames()->first(),
                 ];
             }),

@@ -1,11 +1,3 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
-
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
 
 ## Sobre o PeoplePro
 
@@ -79,7 +71,18 @@ Por fim, destas funcionalidades padrão de User comum, temos o CRUD completo de 
     <img width="400" height="300" src="/public/readme-docs/colaboradores.gif">
 </p>
 
+Ao retornarmos em "Geral", podemos ver um dashboard muito mais completo, com gráficos e cards. Temos a contagem de colaboradores cadastrados ativos x inativos, temos cards ilustrando todos os benefícios aderidos pela empresa e gráficos ilustrando as informações relacionadas à nossa empresa, como a quantidade de colaboradores por setor/cargo, ou estimativas de salário:
 
-## License
+<p align="center">
+    <img width="400" height="300" src="/public/readme-docs/geral.gif">
+</p>
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Saindo dessas rotas de user comum, caso você tenha rodado o db:seed como instruído, pode-se efetuar o login como Administrador com o email "test@example.com" e a senha "password". Ao logar como usuário administrador, temos um controle privilegiado de quem pode acessar qualquer informação, apenas não podemos alterar os cargos padrão do sistema (adm e user comum) e nem modificar o cargo de outros possíveis administradores. Nesta demonstração a seguir, faço o login como usuário admin, crio um perfil de acesso que só possui as permissões para corporação > empresa e o atribuo ao nosso primeiro usuário (comum). A partir daí, o usuário que antes era comum, agora se limita ao acesso que associamos a ele:
+
+<p align="center">
+    <img width="400" height="300" src="/public/readme-docs/admin.gif">
+</p>
+
+## Considerações
+
+Apesar de ainda haverem coisas a se resolverem, como monitorar o consumo na api de cnpj's, ou até melhorias como uma melhor validação para páginas de erros, este projeto me proporcionou uma boa experiência com a fixação de conhecimentos intermediários (porém, sólidos e completos) de PHP e Framework Laravel, permitindo-me ter o contato com funcionalidades múltiplas e explorar regras de negócio da maneira que melhor se aplicassem ao software.
