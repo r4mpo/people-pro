@@ -63,12 +63,9 @@ Na parte de "Empresa" dentro do sistema, podemos atualizar as informações da e
 
 Na parte de setores e cargos, há uma relação entre esses dois itens, tendo em vista que ambos se completam. Confira a seguir um CRUD dessas informações:
 
-```
 <p align="center">
-    <img width="400" height="300" src="/public/readme-docs/setores-e-cargos.gif">
+    <img width="400" height="300" src="/public/readme-docs/empresa.gif">
 </p>
-```
-
 
 
 ## License
