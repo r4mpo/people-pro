@@ -73,6 +73,12 @@ Sabe-se que, em uma gestão profissional, existem diversas documentações - mui
     <img width="400" height="300" src="/public/readme-docs/financeiros.gif">
 </p>
 
+Por fim, destas funcionalidades padrão de User comum, temos o CRUD completo de colaboradores, o qual consiste numa gama de informações próprias e relacionadas, contando também com o viacep. Essas informações compõem o perfil do profissional de forma visualmente simples dentro da tabela.
+
+<p align="center">
+    <img width="400" height="300" src="/public/readme-docs/colaboradores.gif">
+</p>
+
 
 ## License
 
