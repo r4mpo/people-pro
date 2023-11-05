@@ -14,7 +14,7 @@ O PeoplePro está sendo projetado para ser um software de gestão voltado para e
 Confira as tecnologias utilizadas no projeto
 
 - PHP 8.2.4 e Framework Laravel 10.21.0.
-- HTML5, CSS3, Bootstrap 5, JavaScript Vanilla, ChartJS, DataTables.
+- HTML5, CSS3, Bootstrap 5, JavaScript Vanilla, JQuery, ChartJS, DataTables.
 - Banco de dados relacional MySQL (PHP MyAdmin).
 
 Sobre o desevolvimento
@@ -61,10 +61,16 @@ Na parte de "Empresa" dentro do sistema, podemos atualizar as informações da e
     <img width="400" height="300" src="/public/readme-docs/empresa.gif">
 </p>
 
-Na parte de setores e cargos, há uma relação entre esses dois itens, tendo em vista que ambos se completam. Confira a seguir um CRUD dessas informações:
+Na parte de setores e cargos, há uma relação entre esses dois itens definidos pelo que chamamos de Chave Estrangeira (foreign key), tendo em vista que ambos se completam. Essas duas informações serão utilizadas para cadastrar colaboradores e para os gráficosa analíticos do dashboard. Confira a seguir um CRUD dessas informações e suas respectivas exbições por meio do JQuery DataTables:
 
 <p align="center">
     <img width="400" height="300" src="/public/readme-docs/setores-e-cargos.gif">
+</p>
+
+Sabe-se que, em uma gestão profissional, existem diversas documentações - muitas vezes financeiras - que precisam ser guardadas (como .pdfs ou arquivos de imagem). Pensando nessa possibilidade, foi desenvolvida a funcionalidade "Financeiros" que funciona como um crud de documentações - as quais são armazenadas em uma pasta no projeto e seus nomes são codificados e enviados ao banco de dados.
+
+<p align="center">
+    <img width="400" height="300" src="/public/readme-docs/financeiros.gif">
 </p>
 
 
