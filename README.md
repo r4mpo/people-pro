@@ -58,6 +58,13 @@ A seguir, confira a funcionalidade relacionada aos benefícios, onde podemos vin
 </p>
 
 
+Na parte de "Empresa" dentro do sistema, podemos atualizar as informações da empresa em que estamos relacionados. Faz-se uso de duas APIs, sendo o cnpj.ws e o viacep, de forma que o usuário tenha mais facilidade e perca menos tempo preenchendo os campos do formulário. Quando estas informações são atualizadas com sucesso, elas são salvas no banco de dados, alterando dinamicamente o restante do sistema.
+
+
+<p align="center">
+    <img width="400" height="300" src="/public/readme-docs/empresa.gif">
+</p>
+
 
 
 ## License
